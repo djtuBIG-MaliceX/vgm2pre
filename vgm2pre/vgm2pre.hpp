@@ -157,10 +157,46 @@ struct Processor {
 					ret = 2;
 					break;
 				case VGM::WRITE_YM2203:
+					q[0] = data[0]; q[1] = data[1];
+#ifdef __SUB_YM2612_H__
+					sub2612.write(
+						cmd-VGM::WRITE_YM2203,
+						q[0],
+						q[1],
+						file_id
+					);
+#endif
+					//print("YM2203[",(cmd-VGM::WRITE_YM2610_1),"] write x",hex(q[0])," x",hex(q[1]),"\n");
+					ret = 2;
+					break;
 				case VGM::WRITE_YM2608_1:
 				case VGM::WRITE_YM2608_2:
+					q[0] = data[0]; q[1] = data[1];
+#ifdef __SUB_YM2612_H__
+					sub2612.write(
+						cmd-VGM::WRITE_YM2608_1,
+						q[0],
+						q[1],
+						file_id
+					);
+#endif
+					//print("YM2608[",(cmd-VGM::WRITE_YM2610_1),"] write x",hex(q[0])," x",hex(q[1]),"\n");
+					ret = 2;
+					break;
 				case VGM::WRITE_YM2610_1:
 				case VGM::WRITE_YM2610_2:
+					q[0] = data[0]; q[1] = data[1];
+#ifdef __SUB_YM2612_H__
+					sub2612.write(
+						cmd-VGM::WRITE_YM2610_1,
+						q[0],
+						q[1],
+						file_id
+					);
+#endif
+					//print("YM2610[",(cmd-VGM::WRITE_YM2610_1),"] write x",hex(q[0])," x",hex(q[1]),"\n");
+					ret = 2;
+					break;
 				case VGM::WRITE_YM3812:
 					q[0] = data[0]; q[1] = data[1];
 #ifdef __SUB_YM3812_H__
