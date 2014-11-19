@@ -6,27 +6,38 @@
 #include "fmt/ym12.hpp"
 #include "fmt/gyb.hpp"
 
+#include "fmt/sbi.hpp"
+#include "fmt/bnk.hpp"
+
 namespace N {
 
-namespace OPN {
-	enum Types : unsigned {
-		VGI = 0,
-		TFI,
-		TYI,
-		EIF,
-		DMP,
-		Y12,
-		GYB,
-		Total
-	};
-}
+	namespace OPN {
+		enum Types : unsigned {
+			VGI = 0,
+			TFI,
+			TYI,
+			EIF,
+			DMP,
+			Y12,
+			GYB,
+			Total
+		};
+	}
 
-namespace OPM {
-	enum Types : unsigned {
-		OPM = 0,
-		Total
-	};
-}
+	namespace OPM {
+		enum Types : unsigned {
+			OPM = 0,
+			Total
+		};
+	}
+
+	namespace OPL {
+		enum Types : unsigned {
+			SBI = 0,
+			BNK,
+			Total
+		};
+	}
 
 }
 

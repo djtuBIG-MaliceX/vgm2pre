@@ -25,6 +25,9 @@ struct Processor {
 #ifdef __SUB_YM2151_H__
 	//SubYM2151 sub2151;
 #endif
+#ifdef __SUB_YM3812_H__
+	SubYM3812 sub3812;
+#endif
 	Processor() {
 		init();
 		vgm.processor = [&](const uint8_t *data, VGM::Command cmd) {
@@ -159,6 +162,18 @@ struct Processor {
 				case VGM::WRITE_YM2610_1:
 				case VGM::WRITE_YM2610_2:
 				case VGM::WRITE_YM3812:
+					q[0] = data[0]; q[1] = data[1];
+#ifdef __SUB_YM3812_H__
+					sub3812.write(
+						cmd-VGM::WRITE_YM2612_1,
+						q[0],
+						q[1],
+						file_id
+					);
+#endif
+					//print("YM3812[",(cmd-VGM::WRITE_YM3812_1),"] write x",hex(q[0])," x",hex(q[1]),"\n");
+					ret = 2;
+					break;
 				case VGM::WRITE_YM3526:
 				case VGM::WRITE_Y8950:
 				case VGM::WRITE_YMZ280B:
@@ -211,6 +226,9 @@ struct Processor {
 #endif
 #ifdef __SUB_YM2151_H__
 		//sub2151.init();
+#endif
+#ifdef __SUB_YM3812_H__
+		//sub3812.init();
 #endif
 		print("OK: Processing '",fn,"' (");
 		vgm.load(fn);
@@ -277,6 +295,9 @@ bool Processor::finalize() {
 #ifdef __SUB_YM2151_H__
 		//sub2151.process(filelist,prog->cfg);
 #endif
+#ifdef __SUB_YM3812_H__
+		sub3812.process(fileList,prog->cfg);
+#endif
 		return true;
 	}
 	else return false;
@@ -316,6 +337,9 @@ struct Win : Window {
 							"",
 						!prog->cfg.disabledOPM[N::OPM::Types::OPM]&&prog->cfg.dumpOPM[N::OPM::Types::OPM]?
 							" OPM was selected, check program's folder":
+							"",
+						!prog->cfg.disabledOPL[N::OPL::Types::BNK]&&prog->cfg.dumpOPL[N::OPL::Types::BNK]?
+							" BNK was selected, check program's folder":
 							"",
 					});
 				}

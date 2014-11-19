@@ -146,6 +146,10 @@ void Prog::init() {
 	//cfg.disabledOPN[N::OPN::Types::GYB] = true;
 	//cfg.dumpOPM[N::OPM::Types::OPM] = true;
 	cfg.disabledOPM[N::OPM::Types::OPM] = true;
+	
+	cfg.dumpOPL[N::OPL::Types::SBI] = true;
+	cfg.dumpOPL[N::OPL::Types::BNK] = true;
+	
 	Application::setName(name);
 }
 

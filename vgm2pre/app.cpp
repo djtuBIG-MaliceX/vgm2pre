@@ -218,6 +218,8 @@ void Win::resize() {
 void WinOptions::initProc() {
 	unsigned i;
 	auto &c = (prog->cfg);
+	
+	// OPN
 	for (i=0; i<N::OPN::Types::Total; ++i) {
 		opnToggles[i].setEnabled(!c.disabledOPN[i]);
 		opnToggles[i].setChecked(c.dumpOPN[i]);
@@ -229,9 +231,19 @@ void WinOptions::initProc() {
 	opnToggles[N::OPN::Types::DMP].onToggle = [&]() {c.dumpOPN[N::OPN::Types::DMP] = opnToggles[N::OPN::Types::DMP].checked();};
 	opnToggles[N::OPN::Types::Y12].onToggle = [&]() {c.dumpOPN[N::OPN::Types::Y12] = opnToggles[N::OPN::Types::Y12].checked();};
 	opnToggles[N::OPN::Types::GYB].onToggle = [&]() {c.dumpOPN[N::OPN::Types::GYB] = opnToggles[N::OPN::Types::GYB].checked();};
+	
+	// OPM
 	for (i=0; i<N::OPM::Types::Total; ++i) {
 		opmToggles[i].setEnabled(!c.disabledOPM[i]);
 		opmToggles[i].setChecked(c.dumpOPM[i]);
 	}
 	opmToggles[N::OPM::Types::OPM].onToggle = [&]() {c.dumpOPM[N::OPM::Types::OPM] = opmToggles[N::OPM::Types::OPM].checked();};
+	
+	// OPL
+	for (i=0; i<N::OPL::Types::Total; ++i) {
+		oplToggles[i].setEnabled(!c.disabledOPL[i]);
+		oplToggles[i].setChecked(c.dumpOPL[i]);
+	}
+	oplToggles[N::OPL::Types::BNK].onToggle = [&]() {c.dumpOPN[N::OPL::Types::BNK] = oplToggles[N::OPL::Types::BNK].checked();};
+	oplToggles[N::OPL::Types::SBI].onToggle = [&]() {c.dumpOPN[N::OPL::Types::SBI] = oplToggles[N::OPL::Types::SBI].checked();};
 }

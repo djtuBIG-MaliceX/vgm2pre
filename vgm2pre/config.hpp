@@ -19,9 +19,14 @@ struct V2PConfiguration {
 	bool dumpOPM[N::OPM::Types::Total] = {0};
 	bool disabledOPM[N::OPM::Types::Total] = {0};
 	//bool dump_ym2151_opm;
+	// YM3812
+	bool dumpOPL[N::OPL::Types::Total] = {0};
+	bool disabledOPL[N::OPL::Types::Total] = {0};
+	
 	// USE EXTENDED COMPARISON
 	bool use_ext_cmp_ym2612;
 	bool use_ext_cmp_ym2151;
+	bool use_ext_cmp_ym3812;
 };
 
 #endif
