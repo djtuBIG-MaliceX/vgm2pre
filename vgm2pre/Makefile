@@ -2,7 +2,8 @@ include ../nall/Makefile
 include ../phoenix/Makefile
 
 application := vgm2pre
-flags := -O3 -fomit-frame-pointer -I..
+flags := -g -fomit-frame-pointer -I..
+#flags := -O3 -fomit-frame-pointer -I..
 link := -s
 objects := obj/phoenix.o obj/$(application).o
 

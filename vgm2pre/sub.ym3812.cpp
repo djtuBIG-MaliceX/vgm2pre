@@ -67,8 +67,9 @@ void SubYM3812::write(int bank, int reg, int val, int f) {
 	/*int dtTable[8]={0,1,2,3,0,-1,-2,-3};*/
 	int ch;
 
-	if (reg==0xb3) return;	// INVALID
+	//if (reg==0xb3) return;	// INVALID
 
+	/*
 	if (!bank) {
 		switch (reg) {
 			case 0x2b: //DAC on/off
@@ -86,16 +87,17 @@ void SubYM3812::write(int bank, int reg, int val, int f) {
 				}
 				return;
 		}
-	}
+	}*/
 
 	/**** early exits { ****/
-	if (reg<0x30) return;
-	if ((reg&3)==3) return;
+	//if (reg<0x30) return;
+	//if ((reg&3)==3) return;
 	/**** } ****/
 
-	ch = (reg&3)+bank*3;
+	ch = (reg&3);
 	op = &insts[ch].ch.op[(reg>>2)&3];
-	switch (reg&0xf0) {
+	// TODO capture registers
+	/*switch (reg&0xf0) {
 		case 0x20: break;	// BANK 0 registers ignored
 		case 0x30:	//DT1,MUL
 			op->dt = (val>>4)&7;
@@ -136,7 +138,7 @@ void SubYM3812::write(int bank, int reg, int val, int f) {
 			break;
 		case 0xa0: break;	// YM3812 set freq
 		default: break;
-	}
+	}*/
 }
 
 unsigned SubYM3812::group(bool use_ext_cmp=false) {
